@@ -1,0 +1,38 @@
+# lightning.pytorch==2.0.0
+seed_everything: 2617922398
+trainer:
+  accelerator: auto
+  strategy: auto
+  devices: auto
+  num_nodes: 1
+  precision: 32
+  logger:
+    class_path: TensorBoardLogger
+    init_args:
+      save_dir: 'logs'
+      name: 'visda'
+  log_every_n_steps: 5
+  max_epochs: 1
+  min_epochs: null
+  check_val_every_n_epoch: 1
+  enable_checkpointing: False
+model:
+  class_path: adaptation.COMET
+  init_args:
+    rejection_threshold: 0.5
+    feature_dim: 256
+    lr: 1e-3
+    lower_confidence_threshold: 0.25
+    upper_confidence_threshold: 0.75
+    ckpt_dir: 'logs/visda/source_model_OPDA/checkpoints/source_ckpt.pt'
+    cl_projection_dim: 128
+    cl_temperature: 0.1
+    m_teacher_momentum: 0.999
+    lbd: 0.01
+    use_source_prototypes: False
+data:
+  class_path: datasets.VisDADataModule
+  init_args:
+    batch_size: 128
+    category_shift: 'OPDA'
+

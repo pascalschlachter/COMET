@@ -1,0 +1,40 @@
+# lightning.pytorch==2.0.0
+seed_everything: 4239897122
+trainer:
+  accelerator: auto
+  strategy: auto
+  devices: auto
+  num_nodes: 1
+  precision: 32
+  logger:
+    class_path: TensorBoardLogger
+    init_args:
+      save_dir: 'logs/domainnet'
+      name: 'sketch_source'
+  log_every_n_steps: 5
+  max_epochs: 1
+  min_epochs: null
+  check_val_every_n_epoch: 1
+  enable_checkpointing: False
+model:
+  class_path: adaptation.COMET
+  init_args:
+    rejection_threshold: 0.5
+    feature_dim: 256
+    lr: 1e-4
+    lower_confidence_threshold: 0.25
+    upper_confidence_threshold: 0.75
+    ckpt_dir: 'logs/domainnet/sketch_source/source_model_PDA/checkpoints/source_ckpt.pt'
+    cl_projection_dim: 128
+    cl_temperature: 0.1
+    m_teacher_momentum: 0.999
+    lbd: 0.1
+    use_source_prototypes: True
+data:
+  class_path: datasets.DomainNetDataModule
+  init_args:
+    batch_size: 128
+    category_shift: 'PDA'
+    test_domain: 'painting'
+
+
