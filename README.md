@@ -1,6 +1,6 @@
 # COMET: Contrastive Mean Teacher for Online Source-free Universal Domain Adaptation
 
-This is the official repository to the paper "COMET: Contrastive Mean Teacher for Online Source-free Universal Domain Adaptation". Some parts of this implementation are based on [mariodoebler/test-time-adaptation](https://github.com/mariodoebler/test-time-adaptation) and [HobbitLong/SupContrast](https://github.com/HobbitLong/SupContrast).
+This is the official repository to the paper ["COMET: Contrastive Mean Teacher for Online Source-free Universal Domain Adaptation"](https://arxiv.org/abs/2401.17728). Some parts of this implementation are based on [mariodoebler/test-time-adaptation](https://github.com/mariodoebler/test-time-adaptation) and [HobbitLong/SupContrast](https://github.com/HobbitLong/SupContrast).
 
 ## Usage
 ### Preparation
