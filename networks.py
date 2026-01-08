@@ -222,9 +222,6 @@ class SourceModule(BaseModule):
             rej_pred = torch.where(pred == self.known_classes_num, 1, 0)
             self.test_statscores.update(rej_pred, rej_target)
 
-        self.test_feature_embeddings = torch.cat([self.test_feature_embeddings, feature_embedding.cpu()], 0)
-        self.test_labels = torch.cat([self.test_labels, y.cpu()], 0)
-
     def on_test_epoch_end(self):
         if self.open_flag:
             h_score, known_acc, unknown_acc = self.test_hscore.compute()
