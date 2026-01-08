@@ -135,7 +135,8 @@ class COMET(BaseModule):
         # FORWARD
         y_hat, features = self.forward(x, apply_softmax=True)
         y_hat_aug, features_aug = self.forward(self.tta_transform(x))
-        y_hat_teacher, _ = self.forward_teacher(x, apply_softmax=True)
+        with torch.no_grad():
+            y_hat_teacher, _ = self.forward_teacher(x, apply_softmax=True)
 
         # ADAPTATION
         with torch.no_grad():
